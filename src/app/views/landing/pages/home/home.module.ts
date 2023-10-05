@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HeroComponent } from './component/hero/hero.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    CarouselModule
   ]
 })
 export class HomeModule { }
