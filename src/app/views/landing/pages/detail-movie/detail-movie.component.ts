@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieDetailService } from 'src/app/core/api/movie-detail.service';
+import { FavoritService } from 'src/app/core/services/favorit.service';
 
 @Component({
   selector: 'app-detail-movie',
@@ -13,7 +14,8 @@ export class DetailMovieComponent implements OnInit {
   data: any
   constructor(
     private service: MovieDetailService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private favoriteService: FavoritService
   ) {
     this.id = this.activatedRoute.snapshot.queryParams['id'];
   }
@@ -23,11 +25,20 @@ export class DetailMovieComponent implements OnInit {
   }
 
   getData() {
-    console.log(this.id);
-
     this.service.getById(this.id).subscribe((res: any) => {
-      console.log(res);
+      res.is_bookmark = this.favoriteService.isInFavorites(res.id) ? true : false;
       this.data = res;
     })
+  }
+
+  bookmark(data: any) {
+    //add to localSTprage
+    if (data?.is_bookmark) {
+      data.is_bookmark = false;
+      this.favoriteService.removeFromFavorites(data.id);
+    } else {
+      data.is_bookmark = true;
+      this.favoriteService.addToFavorites(data);
+    }
   }
 }

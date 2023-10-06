@@ -72,7 +72,6 @@ export class NowPlayingComponent implements OnInit {
       data.is_bookmark = true;
       this.favorite.addToFavorites(data);
     }
-    console.log(JSON.parse(localStorage.getItem('favorites') || '[]'));
   }
 
 }
