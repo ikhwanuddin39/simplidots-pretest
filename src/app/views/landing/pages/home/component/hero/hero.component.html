@@ -1,11 +1,21 @@
-<p>hero works!</p>
-<div>Some tags before</div>
 <owl-carousel-o [options]="customOptions">
-   <ng-template carouselSlide>Slide 1</ng-template>
-   <ng-template carouselSlide>Slide 2</ng-template>
-   <ng-template carouselSlide>Slide 3</ng-template>
-   <ng-template carouselSlide>Slide 3</ng-template>
-   <ng-template carouselSlide>Slide 3</ng-template>
-   <ng-template carouselSlide>Slide 3</ng-template>
+   <ng-container *ngFor="let d of discover">
+      <ng-template carouselSlide>
+         <div class="flex h-[35rem] relative ">
+            <img [src]="'https://image.tmdb.org/t/p/w1280'+d?.backdrop_path" class="absolute -z-10 object-center"
+               alt="">
+            <div class="bg-gradient-to-r from-zinc-900 flex flex-col justify-center w-full">
+               <div class="p-20 text-white w-6/12">
+                  <h2 class="text-8xl font-bold">
+                     {{(d?.title.length > 20) ? d?.title.slice(0, 20) + '...' : d?.title}}
+                  </h2>
+                  <span class="text-4xl">({{d?.release_date |
+                     date:
+                     'YYYY'}})</span>
+                  <p class="py-2">{{d?.overview}}</p>
+               </div>
+            </div>
+         </div>
+      </ng-template>
+   </ng-container>
 </owl-carousel-o>
-<div>Some tags after</div>
