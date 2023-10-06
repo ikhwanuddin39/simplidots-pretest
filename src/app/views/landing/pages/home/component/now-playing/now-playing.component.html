@@ -1,4 +1,4 @@
-<section class="px-6 md:px-16 lg:px-20">
+<section class="p-6 md:p-16 lg:p-20">
    <h3 class="text-3xl font-bold text-white text-center mb-6">{{pageTitle}}</h3>
    <div class="grid place-items-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
       <ng-container *ngFor="let item of list">
@@ -8,7 +8,9 @@
                class="object-cover h-full w-full rounded-md">
             <!-- card body -->
             <div class="py-2">
-               <h4 class="text-white">{{item?.title}}</h4>
+               <h4 class="text-white" matTooltip="{{item?.title}}"> {{(item?.title.length > 15) ? item?.title.slice(0,
+                  15) + '...' : item?.title}}
+               </h4>
                <span class="text-slate-400">{{item?.release_date | date : ('yyyy')}}</span>
             </div>
             <!-- card action -->
