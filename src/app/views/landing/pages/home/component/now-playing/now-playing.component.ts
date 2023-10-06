@@ -30,7 +30,6 @@ export class NowPlayingComponent implements OnInit {
   getData() {
     this.isLoading = true;
     this.service.getAll({ page: this.currentPage }).subscribe((res: any) => {
-      console.log(res);
       const newResults = res.results.map((item: any) => {
         return {
           ...item,
@@ -48,7 +47,6 @@ export class NowPlayingComponent implements OnInit {
     const scrollHeight = document.documentElement.scrollHeight - 50;
     const scrollTop = window.scrollY;
     const clientHeight = document.documentElement.clientHeight;
-    console.log(this.isLoading);
 
     // Periksa apakah pengguna telah mencapai batas paling bawah halaman
     if (scrollTop + clientHeight >= scrollHeight && !this.isLoading) {

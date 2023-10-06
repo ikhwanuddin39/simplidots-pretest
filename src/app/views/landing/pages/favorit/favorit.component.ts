@@ -16,7 +16,6 @@ export class FavoritComponent implements OnInit {
     private service: FavoritService,
     private roter: Router,
     private activatedRoute: ActivatedRoute
-
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +24,6 @@ export class FavoritComponent implements OnInit {
 
   getFavorit() {
     this.list = this.service.getFavorites();
-    console.log(this.list);
   }
 
   detail(id: any) {
@@ -35,9 +33,8 @@ export class FavoritComponent implements OnInit {
     })
   }
 
-
   bookmark(data: any) {
-    //add to localSTprage
+    //add to localSoprage
     if (data?.is_bookmark) {
       data.is_bookmark = false;
       this.service.removeFromFavorites(data.id);

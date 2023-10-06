@@ -21,7 +21,6 @@ export class HeroComponent implements OnInit {
 
   getTrending() {
     this.service.getAll().subscribe((res: any) => {
-      console.log(res);
       this.discover = res.results;
     })
   }

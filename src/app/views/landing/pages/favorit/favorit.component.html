@@ -11,15 +11,19 @@
                class="object-cover h-full w-full rounded-md">
             <!-- card body -->
             <div class="py-2">
-               <h4 class="text-white" matTooltip="{{item?.title}}"> {{(item?.title.length > 15) ? item?.title.slice(0,
-                  15) + '...' : item?.title}}
+               <h4 class="text-white" matTooltip="{{item?.title}}">
+                  {{(item?.title.length > 15) ? item?.title.slice(0, 15) + '...' : item?.title}}
                </h4>
-               <span class="text-slate-400">{{item?.release_date | date : ('yyyy')}}</span>
+               <span class="text-slate-400">
+                  {{item?.release_date | date : ('yyyy')}}
+               </span>
             </div>
             <!-- card action -->
             <div class="flex gap-2">
                <button (click)="detail(item?.id)"
-                  class="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white px-4 py-1.5 rounded-md w-full">Detail</button>
+                  class="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white px-4 py-1.5 rounded-md w-full">
+                  Detail
+               </button>
                <button (click)="bookmark(item)"
                   class="bg-neutral-600 w-20 hover:bg-neutral-700 active:bg-neutral-800 text-white px-4 py-1.5 rounded-md">
                   <i class="bi bi-{{item?.is_bookmark ? 'bookmark-fill' : 'bookmark'}}"></i>

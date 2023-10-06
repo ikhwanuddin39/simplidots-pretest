@@ -19,13 +19,8 @@ export class LandingComponent implements OnInit {
   }
 
   getAll() {
-    // this.service.getAll().pipe(takeUntil(this.data)).subscribe((res: any) => {
-    //   this.data = res.results;
-    //   console.log(this.data);
-    // })
     this.service.getAll().subscribe((res: any) => {
       this.data = res.results;
-      console.log(this.data);
     })
   }
 }
