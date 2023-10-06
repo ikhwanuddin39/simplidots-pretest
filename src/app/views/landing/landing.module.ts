@@ -11,7 +11,7 @@ const routes: Routes = [
     component: LandingComponent,
     children: [
       {
-        path: '',
+        path: 'home',
         loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
       }, {
         path: 'detail',
@@ -19,6 +19,11 @@ const routes: Routes = [
       }, {
         path: 'favorit',
         loadChildren: () => import('./pages/favorit/favorit.module').then(m => m.FavoritModule),
+      },
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
       }
     ]
   },

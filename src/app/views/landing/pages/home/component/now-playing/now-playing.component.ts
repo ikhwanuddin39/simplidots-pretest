@@ -33,7 +33,7 @@ export class NowPlayingComponent implements OnInit {
   }
 
   detail(id: any) {
-    this.router.navigate(['detail'], {
+    this.router.navigate(['../detail'], {
       relativeTo: this.activatedRoute,
       queryParams: { id: id }
     });
