@@ -16,6 +16,9 @@ const routes: Routes = [
       }, {
         path: 'detail',
         loadChildren: () => import('./pages/detail-movie/detail-movie.module').then(m => m.DetailMovieModule),
+      }, {
+        path: 'favorit',
+        loadChildren: () => import('./pages/favorit/favorit.module').then(m => m.FavoritModule),
       }
     ]
   },
