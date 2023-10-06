@@ -41,7 +41,11 @@ export class FavoritService {
 
   // Fungsi untuk memeriksa apakah film dengan movieId ada dalam daftar favorit
   isInFavorites(movieId: number): boolean {
-    const favorites: any[] = JSON.parse(localStorage.getItem('favorites') || '');
+    let favorites: any[] = []
+    const favoritesFromLocalStorage = localStorage.getItem('favorites');
+    if (favoritesFromLocalStorage !== null) {
+      favorites = JSON.parse(favoritesFromLocalStorage);
+    }
     return favorites.some((fav: any) => fav.id === movieId);
   }
 }

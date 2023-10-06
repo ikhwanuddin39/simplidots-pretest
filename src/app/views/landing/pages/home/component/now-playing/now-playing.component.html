@@ -1,6 +1,9 @@
 <section class="p-6 md:p-16 lg:p-20">
+   <!-- title -->
    <h3 class="text-3xl font-bold text-white text-center mb-6">{{pageTitle}}</h3>
+   <!-- grid  -->
    <div class="grid place-items-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <!-- foreach data -->
       <ng-container *ngFor="let item of list">
          <div class="rounded-md">
             <!-- card image -->
@@ -14,14 +17,13 @@
                <span class="text-slate-400">{{item?.release_date | date : ('yyyy')}}</span>
             </div>
             <!-- card action -->
-            <div class="flex flex-col gap-2">
+            <div class="flex gap-2">
                <button (click)="detail(item?.id)"
                   class="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white px-4 py-1.5 rounded-md w-full">Detail</button>
                <button (click)="bookmark(item)"
-                  class="bg-neutral-600 hover:bg-neutral-700 active:bg-neutral-800 text-white px-4 py-1.5 rounded-md w-full">{{isBookmark
-                  ? 'bookmark' : 'unbookmark'}}</button>
-               <button (click)="unbookmark(item)"
-                  class="bg-neutral-600 hover:bg-neutral-700 active:bg-neutral-800 text-white px-4 py-1.5 rounded-md w-full">UnBookmark</button>
+                  class="bg-neutral-600 w-20 hover:bg-neutral-700 active:bg-neutral-800 text-white px-4 py-1.5 rounded-md">
+                  <i class="bi bi-{{item?.is_bookmark ? 'bookmark-fill' : 'bookmark'}}"></i>
+               </button>
             </div>
          </div>
       </ng-container>

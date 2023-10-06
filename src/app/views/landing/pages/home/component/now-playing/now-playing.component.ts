@@ -31,7 +31,13 @@ export class NowPlayingComponent implements OnInit {
     this.isLoading = true;
     this.service.getAll({ page: this.currentPage }).subscribe((res: any) => {
       console.log(res);
-      this.list = this.list.concat(res.results);
+      const newResults = res.results.map((item: any) => {
+        return {
+          ...item,
+          is_bookmark: this.favorite.isInFavorites(item.id) ? true : false
+        }
+      })
+      this.list = this.list.concat(newResults);
       this.currentPage = res.page + 1;
       this.isLoading = false;
     })
@@ -59,21 +65,14 @@ export class NowPlayingComponent implements OnInit {
 
   bookmark(data: any) {
     //add to localSTprage
-    this.favorite.addToFavorites(data);
-  }
-
-  unbookmark(id: any) {
-    //remove from localstorage
-    this.favorite.removeFromFavorites(id);
-  }
-
-
-  checkIsBookmark(id: any) {
-    // this.isBookmark = this.favorite.isInFavorites(id);
-    // console.log(this.isBookmark);
-
-    // return this.isBookmark;
-
+    if (data?.is_bookmark) {
+      data.is_bookmark = false;
+      this.favorite.removeFromFavorites(data.id);
+    } else {
+      data.is_bookmark = true;
+      this.favorite.addToFavorites(data);
+    }
+    console.log(JSON.parse(localStorage.getItem('favorites') || '[]'));
   }
 
 }
