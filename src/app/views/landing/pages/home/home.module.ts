@@ -9,14 +9,29 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home'
+    title: 'Home',
+    children: [
+      // {
+      //   path: ':category',
+      //   loadChildren: () => import('./component/list-movie/list-movie.module').then(m => m.ListMovieModule)
+      // },
+      {
+        path: 'now-playing',
+        loadChildren: () => import('./component/now-playing/now-playing.module').then(m => m.NowPlayingModule)
+      },
+      {
+        path: '',
+        redirectTo: 'now-playing',
+        pathMatch: 'full'
+      }
+    ]
   }
 ]
 
 @NgModule({
   declarations: [
     HomeComponent,
-    HeroComponent
+    HeroComponent,
   ],
   imports: [
     CommonModule,
