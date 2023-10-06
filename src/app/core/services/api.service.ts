@@ -12,9 +12,10 @@ export class ApiService {
 
    public endpoint = '';
    baseUrl = '/3';
-   helpers!: HelpersService
+
    // required service
    public readonly http = inject(HttpClient);
+   public readonly helpers = inject(HelpersService);
 
    url(): string {
       return [this.baseUrl, this.endpoint].join('/');
