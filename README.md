@@ -32,8 +32,8 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Additional
 
-Menuliskan kode yang bersih dan mudah dibaca
-Frontend menggunakan reuse component
-Mengimplementasikan load on scroll / Infinite scrolling
+Menuliskan kode yang bersih dan mudah dibaca. <br>
+Frontend menggunakan reuse component. <br>
+Mengimplementasikan load on scroll / Infinite scrolling. <br>
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
