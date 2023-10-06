@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NowPlayingService } from 'src/app/core/api/now-playing.service';
+import { FavoritService } from 'src/app/core/services/favorit.service';
 
 @Component({
   selector: 'app-now-playing',
@@ -11,11 +12,13 @@ export class NowPlayingComponent implements OnInit {
 
   list: any
   pageTitle = 'Now Playing'
+  isBookmark: boolean = false;
 
   constructor(
     private service: NowPlayingService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private favorite: FavoritService
   ) { }
 
   ngOnInit(): void {
@@ -35,4 +38,24 @@ export class NowPlayingComponent implements OnInit {
       queryParams: { id: id }
     });
   }
+
+  bookmark(data: any) {
+    //add to localSTprage
+    this.favorite.addToFavorites(data);
+  }
+
+  unbookmark(id: any) {
+    //remove from localstorage
+    this.favorite.removeFromFavorites(id);
+  }
+
+
+  checkIsBookmark(id: any) {
+    // this.isBookmark = this.favorite.isInFavorites(id);
+    // console.log(this.isBookmark);
+
+    // return this.isBookmark;
+
+  }
+
 }
