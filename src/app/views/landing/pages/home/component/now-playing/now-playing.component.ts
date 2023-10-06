@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NowPlayingService } from 'src/app/core/api/now-playing.service';
 import { FavoritService } from 'src/app/core/services/favorit.service';
@@ -10,9 +10,11 @@ import { FavoritService } from 'src/app/core/services/favorit.service';
 })
 export class NowPlayingComponent implements OnInit {
 
-  list: any
+  list: any[] = []
   pageTitle = 'Now Playing'
   isBookmark: boolean = false;
+  currentPage: number = 1;
+  isLoading: boolean = false;
 
   constructor(
     private service: NowPlayingService,
@@ -26,10 +28,26 @@ export class NowPlayingComponent implements OnInit {
   }
 
   getData() {
-    this.service.getAll().subscribe((res: any) => {
+    this.isLoading = true;
+    this.service.getAll({ page: this.currentPage }).subscribe((res: any) => {
       console.log(res);
-      this.list = res.results;
+      this.list = this.list.concat(res.results);
+      this.currentPage = res.page + 1;
+      this.isLoading = false;
     })
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll() {
+    const scrollHeight = document.documentElement.scrollHeight - 50;
+    const scrollTop = window.scrollY;
+    const clientHeight = document.documentElement.clientHeight;
+    console.log(this.isLoading);
+
+    // Periksa apakah pengguna telah mencapai batas paling bawah halaman
+    if (scrollTop + clientHeight >= scrollHeight && !this.isLoading) {
+      this.getData();
+    }
   }
 
   detail(id: any) {
