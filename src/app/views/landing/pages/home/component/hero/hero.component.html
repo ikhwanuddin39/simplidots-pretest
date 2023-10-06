@@ -2,17 +2,17 @@
    <ng-container *ngFor="let d of discover">
       <ng-template carouselSlide>
          <div class="flex h-[35rem] relative ">
-            <img [src]="'https://image.tmdb.org/t/p/w1280'+d?.backdrop_path" class="absolute -z-10 object-center"
-               alt="">
+            <img [src]="'https://image.tmdb.org/t/p/w1280'+d?.backdrop_path"
+               class="absolute -z-10 object-center object-cover w-full h-full" alt="">
             <div class="bg-gradient-to-r from-zinc-900 flex flex-col justify-center w-full">
-               <div class="p-20 text-white w-6/12">
-                  <h2 class="text-8xl font-bold">
+               <div class="p-6 md:p-16 lg:p-20 text-white lg:w-6/12">
+                  <h2 class="text-6xl md:text-7xl lg:text-8xl font-bold">
                      {{(d?.title.length > 20) ? d?.title.slice(0, 20) + '...' : d?.title}}
                   </h2>
-                  <span class="text-4xl">({{d?.release_date |
+                  <span class="text-2xl lg:text-4xl">({{d?.release_date |
                      date:
                      'YYYY'}})</span>
-                  <p class="py-2">{{d?.overview}}</p>
+                  <p class="py-2  md:block hidden">{{d?.overview}}</p>
                </div>
             </div>
          </div>
