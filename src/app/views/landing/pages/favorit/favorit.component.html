@@ -1,3 +1,31 @@
 <section class="p-6 md:p-16 lg:p-20">
-   <h2 class="text-4xl text-white font-bold text-center">Favorit</h2>
+   <!-- title -->
+   <h3 class="text-3xl font-bold text-white text-center mb-6">{{pageTitle}}</h3>
+   <!-- grid  -->
+   <div class="grid place-items-center grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <!-- foreach data -->
+      <ng-container *ngFor="let item of list">
+         <div class="rounded-md">
+            <!-- card image -->
+            <img [src]="'https://image.tmdb.org/t/p/w1280'+item?.poster_path" alt="poster_path"
+               class="object-cover h-full w-full rounded-md">
+            <!-- card body -->
+            <div class="py-2">
+               <h4 class="text-white" matTooltip="{{item?.title}}"> {{(item?.title.length > 15) ? item?.title.slice(0,
+                  15) + '...' : item?.title}}
+               </h4>
+               <span class="text-slate-400">{{item?.release_date | date : ('yyyy')}}</span>
+            </div>
+            <!-- card action -->
+            <div class="flex gap-2">
+               <button (click)="detail(item?.id)"
+                  class="bg-red-600 hover:bg-red-700 active:bg-red-800 text-white px-4 py-1.5 rounded-md w-full">Detail</button>
+               <button (click)="bookmark(item)"
+                  class="bg-neutral-600 w-20 hover:bg-neutral-700 active:bg-neutral-800 text-white px-4 py-1.5 rounded-md">
+                  <i class="bi bi-{{item?.is_bookmark ? 'bookmark-fill' : 'bookmark'}}"></i>
+               </button>
+            </div>
+         </div>
+      </ng-container>
+   </div>
 </section>
