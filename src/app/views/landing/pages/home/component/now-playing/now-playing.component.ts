@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NowPlayingService } from 'src/app/core/api/now-playing.service';
 
 @Component({
@@ -12,17 +13,26 @@ export class NowPlayingComponent implements OnInit {
   pageTitle = 'Now Playing'
 
   constructor(
-    private service: NowPlayingService
+    private service: NowPlayingService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.getAll();
+    this.getData();
   }
 
-  getAll() {
+  getData() {
     this.service.getAll().subscribe((res: any) => {
       console.log(res);
       this.list = res.results;
     })
+  }
+
+  detail(id: any) {
+    this.router.navigate(['detail'], {
+      relativeTo: this.activatedRoute,
+      queryParams: { id: id }
+    });
   }
 }

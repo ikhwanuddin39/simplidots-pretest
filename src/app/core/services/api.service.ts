@@ -21,7 +21,7 @@ export class ApiService {
    }
 
    urlId(id: string | number): string {
-      return `${this.endpoint}/${id}`;
+      return [this.baseUrl, this.endpoint, id].join('/');
    }
    // get semua data
    getAll(query?: HTTPQuery): Observable<any> {
